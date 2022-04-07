@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  title: Proxpay API
+  version: 1.0.0
+servers:
+  - url: https://stg-api.proxpay.co/spark
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []      
+tags:
+  - name: transactions > withdrawals
+  - name: transactions > deposits
+  - name: customers
+  - name: merchants
+  - name: users
+paths:
+  /transactions/withdrawals/refno/{refno}:
+    get:
+      tags:
+        - transactions > withdrawals
+      summary: Get Withdrawal By Refno
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+        - name: refno
+          in: path
+          schema:
+            type: string
+          required: true
+          example: PS202201180002
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /transactions/withdrawals:
+    post:
+      tags:
+        - transactions > withdrawals
+      summary: Create HQ Withdrawal (International)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: 200
+                refno: PSHQW202201180002
+                merchant_id: 3
+                prefer_currency: USD
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: query
+          schema:
+            type: string
+          example: '{{apikey}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /transactions/deposits:
+    post:
+      tags:
+        - transactions > deposits
+      summary: Create Deposit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: 20000
+                refno: PS202201180002
+                merchant_id: 3
+                customer_id: 15
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+        - name: apikey
+          in: query
+          schema:
+            type: string
+          example: '{{apikey}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customers/ref-customer-id/{ref}:
+    get:
+      tags:
+        - customers
+      summary: Get Customer By Ref
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+        - name: ref
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '000020'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /customers:
+    post:
+      tags:
+        - customers
+      summary: Create Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref_customer_id: PSC00111
+                merchant_id: 10
+                name: Panupong Chantaklang
+                bank_name: SCB
+                book_bank_number: '2345678901'
+                book_bank_name: Panupong Chantaklang
+                book_bank_branch: รังสิต
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /merchants/ref-merchant-id/{ref}:
+    get:
+      tags:
+        - merchants
+      summary: Get Merchant By Ref
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+        - name: ref
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '34758'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: '{{user}}'
+                password: '{{pass}}'
+      parameters:
+        - name: apikey
+          in: header
+          schema:
+            type: string
+          example: '{{apikey}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
