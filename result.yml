@@ -47,7 +47,7 @@ paths:
     post:
       tags:
         - transactions > withdrawals
-      summary: Create HQ Withdrawal (International)
+      summary: Create Withdrawal (Customer / HQ / HQ International)
       requestBody:
         content:
           application/json:
@@ -57,7 +57,8 @@ paths:
                 amount: 200
                 refno: PSHQW202201180002
                 merchant_id: 3
-                prefer_currency: USD
+                customer_id: 2 (Only use for Customer Withdrawal)
+                prefer_currency: USD (Only use for HQ International Withdrawal)
       security:
         - bearerAuth: []
       parameters:
