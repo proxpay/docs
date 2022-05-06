@@ -86,8 +86,8 @@ paths:
                 amount: 20000
                 refno: PS202201180002
                 merchant_id: 3
-                customer_id: 15
-      security:
+                customer_id: 15 (Only use for Customer Deposit)
+      security: 
         - bearerAuth: []
       parameters:
         - name: apikey
