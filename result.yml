@@ -128,20 +128,7 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {
-              "id": 99,
-              "ref_customer_id": "XXXX0002",
-              "name": "John Doe",
-              "balance": 0,
-              "merchant": {
-                  "id": 98,
-                  "name": "Simple Merchant"
-              },
-              "bank_name": "SCB",
-              "book_bank_number": "0987654321",
-              "book_bank_name": "John Doe",
-              "created_at": "2022-03-15T01:50:57Z"
-              }
+            application/json: {}
   /customers:
     post:
       tags:
@@ -232,20 +219,7 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {
-    "id": 99,
-    "ref_customer_id": "SMPC0002",
-    "name": "John Doe",
-    "balance": 0,
-    "merchant": {
-        "id": 98,
-        "name": "Simple Merchant"
-    },
-    "bank_name": "SCB",
-    "book_bank_number": "123456789",
-    "book_bank_name": "John Doe",
-    "created_at": "2022-03-15T01:50:57Z"
-}
+            application/json: {}
   /merchants/ref-merchant-id/{ref}:
     get:
       tags:
@@ -269,27 +243,7 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {
-    "id": 98,
-    "ref_merchant_id": "123456",
-    "name": "Simple Merchant",
-    "balance": 999570,
-    "bank_name": "SCB",
-    "book_bank_number": "8000000000",
-    "book_bank_name": "Simple Merchant",
-    "book_bank_branch": "Rangsit",
-    "deposit_fee_rate": 0.025,
-    "withdraw_fee_rate": 0.008,
-    "company_name": "Simple ",
-    "company_address": "1",
-    "company_website": "https://www.some-company.com",
-    "contact_name": "nan",
-    "contact_phone": "029999999",
-    "contact_email": "contact@email.com",
-    "sales_name": "x",
-    "available_services": "promptpay,e_wallet",
-    "created_at": "2022-03-15T01:48:24Z"
-}
+            application/json: {}
   /users/login:
     post:
       tags:
