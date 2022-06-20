@@ -128,7 +128,20 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: {
+              "id": 99,
+              "ref_customer_id": "XXXX0002",
+              "name": "John Doe",
+              "balance": 0,
+              "merchant": {
+                  "id": 98,
+                  "name": "Simple Merchant"
+              },
+              "bank_name": "SCB",
+              "book_bank_number": "0987654321",
+              "book_bank_name": "John Doe",
+              "created_at": "2022-03-15T01:50:57Z"
+              }
   /customers:
     post:
       tags:
@@ -176,36 +189,6 @@ paths:
                 bank_name: SCB
                 book_bank_number: '12341234'
                 book_bank_name: John Doe
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '122'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-/customers/{id}:
-    put:
-      tags:
-        - customers
-      summary: Update Customer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                ref_customer_id: C0001
-                name: John Doe
-                bank_name: SCB
-                book_bank_number: '12341234'
-                book_bank_name: 'John Doe'
       security:
         - bearerAuth: []
       parameters:
