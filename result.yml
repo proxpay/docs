@@ -109,7 +109,7 @@ paths:
     get:
       tags:
         - customers
-      summary: Get Customer By Ref
+      summary: Get Customer By Customer Ref. No.
       security:
         - bearerAuth: []
       parameters:
@@ -128,7 +128,20 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: {
+              "id": 99,
+              "ref_customer_id": "XXXX0002",
+              "name": "John Doe",
+              "balance": 0,
+              "merchant": {
+                  "id": 98,
+                  "name": "Simple Merchant"
+              },
+              "bank_name": "SCB",
+              "book_bank_number": "0987654321",
+              "book_bank_name": "John Doe",
+              "created_at": "2022-03-15T01:50:57Z"
+              }
   /customers:
     post:
       tags:
@@ -160,11 +173,84 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /customers/{id}:
+    put:
+      tags:
+        - customers
+      summary: Update Customer by Customer Ref.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref_customer_id: C0001
+                name: John Doe
+                bank_name: SCB
+                book_bank_number: '12341234'
+                book_bank_name: John Doe
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '122'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+/customers/{id}:
+    put:
+      tags:
+        - customers
+      summary: Update Customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                ref_customer_id: C0001
+                name: John Doe
+                bank_name: SCB
+                book_bank_number: '12341234'
+                book_bank_name: 'John Doe'
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '122'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {
+    "id": 99,
+    "ref_customer_id": "SMPC0002",
+    "name": "John Doe",
+    "balance": 0,
+    "merchant": {
+        "id": 98,
+        "name": "Simple Merchant"
+    },
+    "bank_name": "SCB",
+    "book_bank_number": "123456789",
+    "book_bank_name": "John Doe",
+    "created_at": "2022-03-15T01:50:57Z"
+}
   /merchants/ref-merchant-id/{ref}:
     get:
       tags:
         - merchants
-      summary: Get Merchant By Ref
+      summary: Get Merchant By Customer Ref. No.
       security:
         - bearerAuth: []
       parameters:
@@ -183,7 +269,27 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json: {
+    "id": 98,
+    "ref_merchant_id": "123456",
+    "name": "Simple Merchant",
+    "balance": 999570,
+    "bank_name": "SCB",
+    "book_bank_number": "8000000000",
+    "book_bank_name": "Simple Merchant",
+    "book_bank_branch": "Rangsit",
+    "deposit_fee_rate": 0.025,
+    "withdraw_fee_rate": 0.008,
+    "company_name": "Simple ",
+    "company_address": "1",
+    "company_website": "https://www.some-company.com",
+    "contact_name": "nan",
+    "contact_phone": "029999999",
+    "contact_email": "contact@email.com",
+    "sales_name": "x",
+    "available_services": "promptpay,e_wallet",
+    "created_at": "2022-03-15T01:48:24Z"
+}
   /users/login:
     post:
       tags:
