@@ -63,7 +63,7 @@ paths:
         - bearerAuth: []
       parameters:
         - name: apikey
-          in: query
+          in: header
           schema:
             type: string
           example: '{{apikey}}'
@@ -92,11 +92,6 @@ paths:
       parameters:
         - name: apikey
           in: header
-          schema:
-            type: string
-          example: '{{apikey}}'
-        - name: apikey
-          in: query
           schema:
             type: string
           example: '{{apikey}}'
